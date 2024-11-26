@@ -109,7 +109,11 @@ const AddFirm = () => {
         </div>
       )}
       {!loading && (
-        <form className="tableForm" onSubmit={handleFirmSubmit}>
+        <form
+          className="tableForm"
+          onSubmit={handleFirmSubmit}
+          enctype="multipart/form-data"
+        >
           <h3>Add Firm</h3>
           <label>Firm Name</label>
           <input
@@ -200,7 +204,7 @@ const AddFirm = () => {
           </div>
 
           <label>Firm Image</label>
-          <input type="file" onChange={handleImageUpload} />
+          <input type="file"  onChange={handleImageUpload} />
           <br />
           <div className="btnSubmit">
             <button type="submit">Submit</button>
