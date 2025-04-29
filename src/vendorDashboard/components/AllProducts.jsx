@@ -48,49 +48,62 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="productSection">
-      {!products ? (
-        <p>No products added</p>
+    <div className="w-full min-h-screen px-4 py-8 lg:ml-20 mb-20">
+      {!products || products.length === 0 ? (
+        <p className="text-center text-lg text-gray-600">
+          No products found! Your customers are waiting — add some tasty items
+          to your menu
+        </p>
       ) : (
-        <table className="product-table">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Image</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((item) => {
-              return (
-                <>
-                  <tr key={item._id}>
-                    <td>{item.productName}</td>
-                    <td>₹{item.price}</td>
-                    <td>
-                      {item.image && (
-                        <img
-                          src={`${API_URL}/uploads/${item.image}`}
-                          alt={item.productName}
-                          style={{ width: "50px", height: "50px" }}
-                        />
-                      )}
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => deleteProductById(item._id)}
-                        className="deleteBtn"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                </>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="overflow-x-auto shadow-lg rounded-2xl border border-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 bg-white">
+            <thead className="bg-indigo-700 text-white">
+              <tr>
+                <th className="px-6 py-3 text-left text-sm font-semibold tracking-wider">
+                  Product Name
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold tracking-wider">
+                  Price
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold tracking-wider">
+                  Image
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-semibold tracking-wider">
+                  Delete
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {products.map((item) => (
+                <tr key={item._id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                    {item.productName}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                    ₹{item.price}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {item.image && (
+                      <img
+                        src={`${API_URL}/uploads/${item.image}`}
+                        alt={item.productName}
+                        className="w-12 h-12 object-cover rounded"
+                      />
+                    )}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      onClick={() => deleteProductById(item._id)}
+                      className="text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-sm transition"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

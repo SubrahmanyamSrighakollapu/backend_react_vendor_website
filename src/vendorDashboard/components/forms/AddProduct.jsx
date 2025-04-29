@@ -75,94 +75,120 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="firmSection">
-      {loading && (
-        <div className="loaderSection">
+    <div className="w-full min-h-screen flex justify-center items-start pt-16 px-4">
+      {loading ? (
+        <div className="flex flex-col items-center justify-center gap-4">
           <ThreeCircles
             visible={loading}
             height={100}
             width={100}
             color="#4fa94d"
             ariaLabel="three-circles-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
           />
-          <p>Please wait, your product is being added...</p>
+          <p className="text-gray-600 text-lg">
+            Please wait, your product is being added...
+          </p>
         </div>
-      )}
-      {!loading && (
-        <form className="tableForm" onSubmit={handleAddProduct}>
-          <h3>Add Product</h3>
-          <label>Product Name</label>
-          <input
-            type="text"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-          />
-          <label>Price</label>
-          <input
-            type="text"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <div className="checkInp">
-            <label>Category</label>
-            <div className="inputsContainer">
-              <div className="checboxContainer">
-                <label>Veg</label>
-                <input
-                  type="checkbox"
-                  value="veg"
-                  checked={category.includes("veg")}
-                  onChange={handleCategoryChange}
-                />
-              </div>
-              <div className="checboxContainer">
-                <label>Non-Veg</label>
-                <input
-                  type="checkbox"
-                  value="non-veg"
-                  checked={category.includes("non-veg")}
-                  onChange={handleCategoryChange}
-                />
-              </div>
+      ) : (
+        <form
+          className="w-full max-w-3xl lg:max-w-3xl bg-white shadow-xl rounded-2xl p-8 flex flex-col gap-4 border border-gray-200"
+          onSubmit={handleAddProduct}
+          encType="multipart/form-data"
+        >
+          <h2 className="text-2xl font-bold text-center text-blue-700 mb-4">
+            Add Product
+          </h2>
+
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold">Product Name</label>
+            <input
+              type="text"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              className="border border-gray-300 rounded px-4 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold">Price</label>
+            <input
+              type="text"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="border border-gray-300 rounded px-4 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold">Category</label>
+            <div className="flex flex-wrap gap-4">
+              {["veg", "non-veg"].map((item) => (
+                <label key={item} className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    value={item}
+                    checked={category.includes(item)}
+                    onChange={handleCategoryChange}
+                    className="accent-blue-600"
+                  />
+                  {item.toUpperCase()}
+                </label>
+              ))}
             </div>
           </div>
-          <div className="checkInp">
-            <label>Best Seller</label>
-            <div className="inputsContainer">
-              <div className="checboxContainer">
-                <label>Yes</label>
+
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold">Best Seller</label>
+            <div className="flex gap-4">
+              <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   value="true"
                   checked={bestSeller === true}
                   onChange={handleBestSeller}
+                  className="accent-blue-600"
                 />
-              </div>
-              <div className="checboxContainer">
-                <label>No</label>
+                Yes
+              </label>
+              <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   value="false"
                   checked={bestSeller === false}
                   onChange={handleBestSeller}
+                  className="accent-blue-600"
                 />
-              </div>
+                No
+              </label>
             </div>
           </div>
 
-          <label>Description</label>
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <label>Firm Image</label>
-          <input type="file" onChange={handleImageUpload} />
-          <br />
-          <div className="btnSubmit">
-            <button type="submit">Submit</button>
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold">Description</label>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="border border-gray-300 rounded px-4 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="font-semibold">Firm Image</label>
+            <input
+              type="file"
+              onChange={handleImageUpload}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          </div>
+
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-50 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            >
+              Submit
+            </button>
           </div>
         </form>
       )}

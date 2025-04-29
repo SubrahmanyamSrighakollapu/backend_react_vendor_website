@@ -52,8 +52,8 @@ const Login = ({ showWelcomeHandler }) => {
   };
 
   return (
-    <div className="loginSection">
-      {loading && (
+    <div className="w-100 flex justify-center items-center min-h-screen px-4 md:ml-24 lg:ml-80 mb-120">
+      {loading ? (
         <div className="loaderSection">
           <ThreeCircles
             visible={loading}
@@ -61,39 +61,52 @@ const Login = ({ showWelcomeHandler }) => {
             width={100}
             color="#4fa94d"
             ariaLabel="three-circles-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
           />
-          <p>Login in process... Please wait</p>
+          <p className="text-lg mt-4">Login in process... Please wait</p>
         </div>
-      )}
-      {!loading && (
-        <form className="authForm" onSubmit={loginHandler} autoComplete="off">
-          <h3>Vendor Login</h3>
-          <label>Email</label>
+      ) : (
+        <form
+          className="w-full max-w-md bg-white shadow-lg rounded-xl p-8 flex flex-col gap-4"
+          onSubmit={loginHandler}
+          autoComplete="off"
+        >
+          <h3 className="text-2xl font-semibold text-center text-blue-600">
+            Vendor Login
+          </h3>
+
+          <label className="text-sm font-medium">Email</label>
           <input
             type="text"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="enter your email"
+            placeholder="Enter your email"
+            className="border border-gray-300 rounded px-3 py-2 w-full"
           />
-          <br />
-          <label>Password</label>
+
+          <label className="text-sm font-medium">Password</label>
           <input
             type={showPassword ? "text" : "password"}
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="enter your password"
+            placeholder="Enter your password"
+            className="border border-gray-300 rounded px-3 py-2 w-full"
           />
-          <br />
-          <span className="showPassword" onClick={handleShowPassword}>
+
+          <span
+            className="text-sm text-blue-600 cursor-pointer self-end"
+            onClick={handleShowPassword}
+          >
             {showPassword ? "Hide" : "Show"}
           </span>
-          <div className="btnSubmit">
-            <button type="submit">Submit</button>
-          </div>
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            Submit
+          </button>
         </form>
       )}
     </div>

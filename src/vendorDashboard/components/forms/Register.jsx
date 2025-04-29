@@ -47,8 +47,8 @@ const Register = ({ showLoginHandler }) => {
   };
 
   return (
-    <div className="registerSection">
-      {loading && (
+    <div className="w-100 flex justify-center items-center min-h-screen px-4 md:ml-24 lg:ml-80 mb-120">
+      {loading ? (
         <div className="loaderSection">
           <ThreeCircles
             visible={loading}
@@ -56,48 +56,62 @@ const Register = ({ showLoginHandler }) => {
             width={100}
             color="#4fa94d"
             ariaLabel="three-circles-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
           />
-          <p>Hi, Your Registration under process</p>
+          <p className="text-lg mt-4">Hi, your registration is in process</p>
         </div>
-      )}
-      {!loading && (
-        <form className="authForm" onSubmit={handleSubmit} autoComplete="off">
-          <h3>Vendor Register</h3>
-          <label>Username</label>
+      ) : (
+        <form
+          className="w-full max-w-md bg-white shadow-lg rounded-xl p-8 flex flex-col gap-4"
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
+          <h3 className="text-2xl font-semibold text-center text-green-600">
+            Vendor Register
+          </h3>
+
+          <label className="text-sm font-medium">Username</label>
           <input
             type="text"
             name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="enter your name"
+            placeholder="Enter your name"
+            className="border border-gray-300 rounded px-3 py-2 w-full"
           />
-          <br />
-          <label>Email</label>
+
+          <label className="text-sm font-medium">Email</label>
           <input
             type="text"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="enter your email"
+            placeholder="Enter your email"
+            className="border border-gray-300 rounded px-3 py-2 w-full"
           />
-          <br />
-          <label>Password</label>
+
+          <label className="text-sm font-medium">Password</label>
           <input
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             name="password"
-            placeholder="enter your password"
+            placeholder="Enter your password"
+            className="border border-gray-300 rounded px-3 py-2 w-full"
           />
-          <br />
-          <span className="showPassword" onClick={handleShowPassword}>
+
+          <span
+            className="text-sm text-green-600 cursor-pointer self-end"
+            onClick={handleShowPassword}
+          >
             {showPassword ? "Hide" : "Show"}
           </span>
-          <div className="btnSubmit">
-            <button type="submit">Submit</button>
-          </div>
+
+          <button
+            type="submit"
+            className="bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          >
+            Submit
+          </button>
         </form>
       )}
     </div>

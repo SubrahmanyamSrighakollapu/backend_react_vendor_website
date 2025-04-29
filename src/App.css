@@ -14,7 +14,6 @@ body {
   display: flex;
   justify-content: space-between;
   background-color: rgb(54, 52, 180);
-  /* background-color: #f46036; */
   align-items: center;
   color: white;
   padding: 0 20px;
@@ -31,10 +30,9 @@ body {
 
 .sideBarSection {
   width: 100%;
-  max-width: 15%;
-  height: 95vh;
+  max-width: 20%;
+  height: 150vh;
   padding-top: 10px;
-  /* background-color: lightgray; */
   background-color: #2e294e;
   color: white;
 }
@@ -53,7 +51,7 @@ body {
 
 /* logisetion */
 
-.loginSection {
+/* .loginSection {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -94,7 +92,7 @@ body {
   height: 1.4rem;
   height: 2rem;
   font-size: medium;
-}
+} */
 
 /* firmSection AddFirm */
 
@@ -178,7 +176,7 @@ body {
 }
 
 /* products table */
-
+/* 
 .productSection {
   width: 100%;
   display: flex;
@@ -210,7 +208,7 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
 /* not found */
 
@@ -233,7 +231,7 @@ h3 {
 
 /* btn Submit */
 
-.btnSubmit button {
+/* .btnSubmit button {
   background-color: rgb(43, 43, 180);
   width: 6rem;
   color: white;
@@ -241,7 +239,7 @@ h3 {
   margin-bottom: 20px;
   border: 1px solid whitesmoke;
   border-radius: 5px;
-}
+} */
 
 /* landing image  */
 
@@ -268,14 +266,57 @@ h3 {
   color: #2073c0;
 }
 
-.showPassword {
+/* .showPassword {
   width: fit-content;
   position: absolute;
   bottom: 90px;
   right: 135px;
   cursor: pointer;
+} */
+
+.popupAnimation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.loaderSection {
-  z-index: 10000;
+.popupContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  animation: scaleIn 0.5s ease-in-out;
+}
+
+.popupContent h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.popupContent button {
+  margin-top: 1rem;
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
